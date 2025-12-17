@@ -1,0 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0b1c2d 0%, #1a2d3e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.edit-box {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.edit-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #1faa59, #0b1c2d);
+}
+
+.edit-box h1 {
+    color: #0b1c2d;
+    margin-bottom: 35px;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+}
+
+.edit-box h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 4px;
+    background-color: #1faa59;
+    border-radius: 2px;
+}
+
+.edit-box h1 i {
+    margin-right: 10px;
+    color: #1faa59;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 25px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.form-group:last-of-type {
+    border-bottom: none;
+}
+
+.form-group:hover {
+    background-color: #f8fafc;
+    padding: 8px 5px;
+    border-radius: 8px;
+    border-bottom-color: transparent;
+}
+
+.form-group label {
+    width: 140px;
+    text-align: right;
+    color: #0b1c2d;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group label i {
+    color: #1faa59;
+    font-size: 16px;
+}
+
+.form-group input[type="text"] {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 2px solid #e0e6ed;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+    color: #333;
+}
+
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #1faa59;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(31, 170, 89, 0.15);
+}
+
+.task-id {
+    flex: 1;
+    text-align: left;
+    color: #5a6c7d;
+    font-size: 15px;
+    font-family: monospace;
+    padding: 12px 16px;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    border-left: 4px solid #1faa59;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 25px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    justify-content: flex-start;
+    padding-left: 165px;
+    gap: 15px;
+}
+
+.checkbox-group label {
+    width: auto;
+    cursor: pointer;
+    color: #0b1c2d;
+    font-weight: 600;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #cbd5e1;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background-color: white;
+}
+
+.checkbox-custom i {
+    color: white;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkbox-custom {
+    background-color: #1faa59;
+    border-color: #1faa59;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkbox-custom i {
+    opacity: 1;
+}
+
+.checkbox-container input[type="checkbox"]:focus + .checkbox-custom {
+    box-shadow: 0 0 0 3px rgba(31, 170, 89, 0.2);
+}
+
+.primary-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(to right, #1faa59, #1a8f4d);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 15px rgba(31, 170, 89, 0.3);
+}
+
+.primary-btn:hover {
+    background: linear-gradient(to right, #1a8f4d, #167a41);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(31, 170, 89, 0.4);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+.secondary-btn {
+    margin-top: 10px;
+    padding: 14px 30px;
+    background: linear-gradient(to right, #1faa59, #1a8f4d);
+    color: white;
+    box-shadow: 0 6px 15px rgba(31, 170, 89, 0.3);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 0.5px;
+}
+
+.secondary-btn:hover {
+    background: linear-gradient(to right, #1a8f4d, #167a41);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(31, 170, 89, 0.4);
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 95%;
+    }
+    
+    .edit-box {
+        padding: 30px 25px;
+    }
+    
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .form-group label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    
+    .checkbox-group {
+        padding-left: 0;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .checkbox-group label {
+        width: auto;
+        margin-bottom: 0;
+    }
+    
+    .task-id {
+        width: 100%;
+    }
+    
+    .edit-box h1 {
+        font-size: 1.8rem;
+    }
+}

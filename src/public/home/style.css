@@ -24,7 +24,7 @@ body {
 
 .task-box {
     background-color: #ffffff;
-    padding: 40px;
+    padding: 30px;
     border-radius: 16px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     text-align: center;
@@ -38,7 +38,7 @@ body {
 .task-box h1 {
     color: #0b1c2d;
     margin-bottom: 25px;
-    font-size: 2.4rem;
+    font-size: 2rem;
     position: relative;
     display: inline-block;
     padding-bottom: 10px;
@@ -58,11 +58,12 @@ body {
 .task-input {
     display: flex;
     gap: 15px;
+    margin-bottom: 20px;
 }
 
 .task-input input {
     flex: 1;
-    padding: 15px 18px;
+    padding: 15px;
     border-radius: 8px;
     border: 2px solid #e0e6ed;
     font-size: 16px;
@@ -109,7 +110,7 @@ body {
 
 .task-list {
     background-color: #ffffff;
-    padding: 30px 40px;
+    padding: 25px;
     border-radius: 16px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
@@ -125,7 +126,7 @@ body {
 
 .task-list-header h2 {
     color: #0b1c2d;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 }
 
 .task-count {
@@ -182,145 +183,6 @@ body {
     }
 }
 
-
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes taskFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-.empty-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: #94a3b8;
-    display: none;
-    opacity: 0; /* Start hidden for animation */
-    transform: scale(0.8); /* Start scaled down for animation */
-}
-
-.empty-state i {
-    font-size: 48px;
-    margin-bottom: 15px;
-    color: #cbd5e1;
-    transition: transform 0.3s ease;
-}
-
-/* Add a subtle hover effect to the icon */
-.empty-state:hover i {
-    transform: scale(1.1);
-}
-
-.empty-state p {
-    font-size: 18px;
-    margin-top: 10px;
-    color: #64748b;
-}
-
-
-#tasks-container {
-    animation: none; /* Reset animation initially */
-}
-
-
-.task-list > #tasks-container {
-    transition: opacity 0.3s ease;
-}
-
-
-@keyframes bounceIn {
-    0% {
-        transform: scale(0.3);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.8;
-    }
-    70% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.empty-state i {
-    animation: pulse 2s infinite ease-in-out;
-}
-
-.task-item {
-   
-    animation: taskFadeIn 0.5s ease;
-}
-
-@keyframes taskFadeOut {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 100px;
-        margin-bottom: 15px;
-        padding: 15px;
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-20px);
-        max-height: 0;
-        margin-bottom: 0;
-        padding: 0 15px;
-        overflow: hidden;
-    }
-}
-
 .task-item:hover {
     border-color: #c8e6d0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -344,6 +206,32 @@ body {
     text-align: left;
     padding-right: 20px;
     word-break: break-word;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+    opacity: 0.7;
+}
+
+.task-item.completed {
+    background-color: #f8f9fa;
+    border-color: #e0e0e0;
+}
+
+.task-item.completed .task-text::before {
+    content: "✓ ";
+    color: #1faa59;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.task-item.completed .actions button {
+    opacity: 0.8;
+}
+
+.task-item.completed .actions button:hover {
+    opacity: 1;
 }
 
 .actions {
@@ -385,7 +273,6 @@ body {
     color: white;
 }
 
-/* Style for disabled delete button during animation */
 .actions .delete:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -396,16 +283,26 @@ body {
     padding: 40px 20px;
     color: #94a3b8;
     display: none;
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 .empty-state i {
     font-size: 48px;
     margin-bottom: 15px;
     color: #cbd5e1;
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.empty-state:hover i {
+    transform: scale(1.1);
 }
 
 .empty-state p {
     font-size: 18px;
+    margin-top: 10px;
+    color: #64748b;
 }
 
 .footer {
@@ -415,30 +312,227 @@ body {
     margin-top: 10px;
 }
 
+/* Other Animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes taskFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes taskFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 100px;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+        margin-bottom: 0;
+        padding: 0 15px;
+        overflow: hidden;
+    }
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
+    body {
+        padding: 15px;
+        align-items: flex-start;
+    }
+    
     .container {
-        max-width: 95%;
+        max-width: 100%;
+        gap: 20px;
     }
     
     .task-box, .task-list {
-        padding: 25px;
+        padding: 25px 20px;
+        width: 100%;
+    }
+    
+    .task-box h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
     }
     
     .task-input {
         flex-direction: column;
+        gap: 12px;
+    }
+    
+    .task-input input {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
     }
     
     .task-input button {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
         justify-content: center;
+    }
+    
+    .task-list-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .task-list-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .task-count {
+        align-self: flex-start;
     }
     
     .task-item {
         flex-direction: column;
-        gap: 15px;
         align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+        margin-bottom: 12px;
+        height: 40px;
+    }
+    
+    .task-item span {
+        padding-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
     }
     
     .actions {
         align-self: flex-end;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .actions button {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .empty-state {
+        padding: 30px 15px;
+    }
+    
+    .empty-state i {
+        font-size: 40px;
+    }
+    
+    .empty-state p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .task-box, .task-list {
+        padding: 20px 15px;
+    }
+    
+    .task-box h1 {
+        font-size: 1.6rem;
+    }
+    
+    .task-input input,
+    .task-input button {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .task-item {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .task-item span {
+        font-size: 15px;
+    }
+    
+    .actions button {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+    
+    .task-list-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .empty-state {
+        padding: 25px 15px;
+    }
+    
+    .empty-state i {
+        font-size: 36px;
+    }
+    
+    .empty-state p {
+        font-size: 15px;
+    }
+}
+
+/* Fix for duplicate keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

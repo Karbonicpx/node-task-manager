@@ -5,7 +5,6 @@ let taskCount = 0; // Number of tasks
 // When loading the page, gets all the tasks and update the count UI
 document.addEventListener('DOMContentLoaded', () => {
     getTasks();
-    updateCount(taskCount);
 })
 
 
@@ -21,10 +20,12 @@ function getTasks() {
 
         // Transforming each task in a DOM component
         data.map((task) => {
-            createTaskComponent(task.name, task.id);
-            taskCount = data.length;
+            createTaskComponent(task.name, task.id, task.completed);
         })
+
+        
     })
+
 }
 
 // Function to add new tasks to the API
@@ -62,12 +63,16 @@ function deleteTask(id) {
         method: 'DELETE',
     })
 }
-
 // Function that will be used to create new tasks components
-function createTaskComponent(taskName, taskId) {
+function createTaskComponent(taskName, taskId, completed) {
 
     const taskItem = document.createElement('div');
     taskItem.className = 'task-item';
+    
+    // Add 'completed' class if the task is completed
+    if (completed) {
+        taskItem.classList.add('completed');
+    }
 
     // Using this so we can delete in the front end with the DELETE Request
     taskItem.dataset.id = taskId;
@@ -75,7 +80,7 @@ function createTaskComponent(taskName, taskId) {
     // Creating task item front-end component
     taskItem.innerHTML = `
             <div>
-                <span>${taskName}</span>
+                <span class="task-text">${taskName}</span>
             </div>
             <div class="actions">
                 <button class="edit"><i class="fas fa-edit"></i></button>
@@ -88,7 +93,9 @@ function createTaskComponent(taskName, taskId) {
     const deleteBtn = taskItem.querySelector('.delete');
 
     editBtn.addEventListener('click', () => {
-        console.log('Edit clicked: ', taskName);
+
+        // Going to the edit page and saving the taskId to fetch the info
+        window.location.href = `../edit/index.html?id=${taskId}`
     });
 
     // Making it async so it deletes in the back-end first then deletes in the front-end
@@ -163,7 +170,7 @@ function updateCount(countNumber) {
 
             setTimeout(() => {
                 emptyState.style.display = 'none';
-
+ 
                 // Show tasks container with animation
                 tasksContainer.style.display = 'block';
                 tasksContainer.style.animation = 'fadeIn 0.5s ease forwards';

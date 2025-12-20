@@ -17,35 +17,35 @@
 
             <div class="form-group">
                 <label><i class="fas fa-fingerprint"></i> Task ID</label>
-                <p class="task-id">60c63fb8a14286039c87fa57</p>
+                <p class="task-id" id="task-id"></p>
             </div>
 
             <div class="form-group">
                 <label><i class="fas fa-tag"></i> Name</label>
-                <input type="text" value="new task">
+                <input type="text" id="task-name" placeholder="Edit your task...">
             </div>
 
             <div class="checkbox-group">
-                <label><i class="fas fa-check-circle"></i> Completed</label>
+                <label><i class="fas fa-check-circle"></i> Status</label>
                 <div class="checkbox-container">
-                    <input type="checkbox" id="completedCheckbox" checked>
+                    <input type="checkbox" id="completed-checkbox" checked>
                     <div class="checkbox-custom">
                         <i class="fas fa-check"></i>
                     </div>
-                    <span>Mark as completed</span>
+                    <span>Completed</span>
                 </div>
             </div>
 
-            <button class="primary-btn">
+            <button class="primary-btn" id="save-btn">
                 <i class="fas fa-save"></i> Save Changes
             </button>
         </section>
 
-        <button class="secondary-btn" >
-            <a class="fas fa-arrow-left" href="../home/index.html"></a> Back To Tasks
+        <button class="secondary-btn" id="return-btn">
+            <div class="fas fa-arrow-left"></div> Back To Tasks
         </button>
 
     </main>
-
+    <script src="script.js"></script>
 </body>
 </html>

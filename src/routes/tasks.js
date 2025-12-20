@@ -42,6 +42,31 @@ router.post('/', (req, res) => {
     res.status(201).json(newTask);
 })
 
+// Updating task
+router.put('/:id', (req, res) => {
+    const {newName, newCompleted } = req.body;
+
+    const taskId = Number(req.params.id)
+
+    const task = tasks.find(t => t.id === taskId);
+
+    task.name = newName;
+    task.completed = newCompleted;
+
+    res.status(200).json(task);
+})
+
+// Router for the edit page
+// Needs to be before the delete because the router will get the delete first
+router.get('/:id', (req, res) => {
+    
+    const taskId = Number(req.params.id);
+    const task = tasks.find(t => t.id === taskId);
+
+    res.status(200).json(task);
+});
+
+
 // Id param
 // Ex: api/tasks/1 --> Delete id 1
 router.delete('/:id', (req, res) => {
@@ -50,16 +75,13 @@ router.delete('/:id', (req, res) => {
     const taskId = Number(req.params.id);
     const index = tasks.findIndex(task => task.id === taskId);
 
-    // Add error handling if the index is -1 or less than that
-    if (index <= -1) {
-        return res.status(404).json({ error: 'Task not found' });
-    }
-
     // Removes element in the array with the found index
     tasks.splice(index, 1);
 
     // Sending succesful response
     res.status(204).send();
 })
+
+
 
 module.exports = router;

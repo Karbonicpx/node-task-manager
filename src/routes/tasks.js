@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    // The name will be defined by the user, that's why we use req
+    // The name will be used to add the name in the newly created task inside the API
     // req ==> User, res ==> Backend response
     const { name } = req.body;
 
@@ -40,6 +40,26 @@ router.post('/', (req, res) => {
 
     // Succesful response
     res.status(201).json(newTask);
+})
+
+// Id param
+// Ex: api/tasks/1 --> Delete id 1
+router.delete('/:id', (req, res) => {
+
+    // The parameter will have string type, so we are converting it to number
+    const taskId = Number(req.params.id);
+    const index = tasks.findIndex(task => task.id === taskId);
+
+    // Add error handling if the index is -1 or less than that
+    if (index <= -1) {
+        return res.status(404).json({ error: 'Task not found' });
+    }
+
+    // Removes element in the array with the found index
+    tasks.splice(index, 1);
+
+    // Sending succesful response
+    res.status(204).send();
 })
 
 module.exports = router;

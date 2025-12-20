@@ -151,6 +151,7 @@ body {
     animation: fadeIn 0.5s ease;
 }
 
+/* Entry animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -159,6 +160,164 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Exit animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 100px;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+        margin-bottom: 0;
+        padding: 0 15px;
+        overflow: hidden;
+    }
+}
+
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes taskFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #94a3b8;
+    display: none;
+    opacity: 0; /* Start hidden for animation */
+    transform: scale(0.8); /* Start scaled down for animation */
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #cbd5e1;
+    transition: transform 0.3s ease;
+}
+
+/* Add a subtle hover effect to the icon */
+.empty-state:hover i {
+    transform: scale(1.1);
+}
+
+.empty-state p {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #64748b;
+}
+
+
+#tasks-container {
+    animation: none; /* Reset animation initially */
+}
+
+
+.task-list > #tasks-container {
+    transition: opacity 0.3s ease;
+}
+
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.empty-state i {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.task-item {
+   
+    animation: taskFadeIn 0.5s ease;
+}
+
+@keyframes taskFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 100px;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+        margin-bottom: 0;
+        padding: 0 15px;
+        overflow: hidden;
     }
 }
 
@@ -224,6 +383,12 @@ body {
 .actions .delete:hover {
     background-color: #c0392b;
     color: white;
+}
+
+/* Style for disabled delete button during animation */
+.actions .delete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .empty-state {

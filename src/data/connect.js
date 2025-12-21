@@ -1,0 +1,1 @@
+const connectionString = "mongodb+srv://nap1903:Nicolas@@nodetaskmanager.ljk1ncf.mongodb.net/?appName=NodeTaskManager"
